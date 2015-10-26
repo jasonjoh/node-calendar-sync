@@ -1,0 +1,35 @@
+{
+  "name": "node-calendar-sync",
+  "version": "1.0.0",
+  "description": "Sample Node.js app that connects to Office 365 and syncs calendar data",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonjoh/node-calendar-sync.git"
+  },
+  "keywords": [
+    "office365",
+    "REST",
+    "calendar",
+    "files",
+    "outlook",
+    "onedrive",
+    "node"
+  ],
+  "author": "Jason Johnston",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonjoh/node-calendar-sync/issues"
+  },
+  "homepage": "https://github.com/jasonjoh/node-calendar-sync#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "moment": "^2.10.6"
+  }
+}

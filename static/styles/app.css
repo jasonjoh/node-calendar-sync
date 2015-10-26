@@ -1,0 +1,41 @@
+#main-content {
+  margin: 20px;
+  width: 750px;
+}
+
+#title-banner {
+  margin: 20px 0;
+  height: 64px;
+}
+
+#user-email {
+  margin-bottom: 20px;
+}
+
+#table-row {
+  margin: 20px 0;
+}
+
+#event-subject {
+  margin-top: 20px;
+}
+
+#body-text {
+  width: 100%;
+}
+
+#action-buttons {
+  margin: 20px 0;
+}
+
+input.ms-Button--primary {
+  color: #fff;
+}
+
+.ms-Table {
+  margin: 20px 0;
+}
+
+.ms-Button {
+  text-decoration: none;
+}
