@@ -1,6 +1,6 @@
 # Node.js Sample for Calendar Sync with Office 365 #
 
-
+This is the `cleanslate` branch.
 
 ## Copyright ##
 
