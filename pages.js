@@ -171,6 +171,17 @@ module.exports = {
     html += '  </div>';
     html += '</div>';
     
+    if (event.IsReminderOn) {
+      html += '<div class="ms-Grid-row">';
+      html += '  <div class="ms-Grid-col ms-u-sm12">';
+      html += '    <div class="ms-TextField is-disabled">';
+      html += '      <label class="ms-Label">Reminder minutes before start</label>';
+      html += '      <input class="ms-TextField-field" value="' + event.ReminderMinutesBeforeStart + '"/>';
+      html += '    </div>';
+      html += '  </div>';
+      html += '</div>';
+    }
+    
     var attendees = getAttendeesStrings(event.Attendees);
     
     if (attendees.required.length > 0) {
@@ -231,6 +242,7 @@ module.exports = {
     html += '</div>';
     html += '</form>';
     
+    html += '<pre>' + JSON.stringify(event, null, 2) + '</pre>';
     // end grid
     html += '</div>';
     
