@@ -163,6 +163,101 @@ app.get('/sync', function(req, res) {
   });
 });
 
+app.get('/viewitem', function(req, res) {
+  var itemId = req.query.id;
+  var access_token = req.session.access_token;
+  var email = req.session.email;
+  
+  if (itemId === undefined || access_token === undefined) {
+    res.redirect('/');
+    return;
+  }
+  
+  var select = {
+    '$select': 'Subject,Attendees,Location,Start,End,IsReminderOn,ReminderMinutesBeforeStart'
+  };
+  
+  var getEventParameters = {
+    token: access_token,
+    eventId: itemId,
+    odataParams: select
+  };
+  
+  outlook.calendar.getEvent(getEventParameters, function(error, event) {
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      res.send(pages.itemDetailPage(email, event));
+    }
+  });
+});
+
+app.get('/updateitem', function(req, res) {
+  var itemId = req.query.eventId;
+  var access_token = req.session.access_token;
+  
+  if (itemId === undefined || access_token === undefined) {
+    res.redirect('/');
+    return;
+  }
+  
+  var newSubject = req.query.subject;
+  var newLocation = req.query.location;
+  
+  console.log('UPDATED SUBJECT: ', newSubject);
+  console.log('UPDATED LOCATION: ', newLocation);
+  
+  var updatePayload = {
+    Subject: newSubject,
+    Location: {
+      DisplayName: newLocation
+    }
+  };
+  
+  var updateEventParameters = {
+    token: access_token,
+    eventId: itemId,
+    update: updatePayload
+  };
+  
+  outlook.calendar.updateEvent(updateEventParameters, function(error, event) {
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      res.redirect('/viewitem?' + querystring.stringify({ id: itemId }));
+    }
+  });
+});
+
+app.get('/deleteitem', function(req, res) {
+  var itemId = req.query.id;
+  var access_token = req.session.access_token;
+  
+  if (itemId === undefined || access_token === undefined) {
+    res.redirect('/');
+    return;
+  }
+  
+  var deleteEventParameters = {
+    token: access_token,
+    eventId: itemId
+  };
+  
+  outlook.calendar.deleteEvent(deleteEventParameters, function(error, event) {
+    if (error) {
+      console.log(error);
+      res.send(error);
+    }
+    else {
+      res.redirect('/sync');
+    }
+  });
+});
+
 // Start the server
 var server = app.listen(3000, function() {
   var host = server.address().address;
