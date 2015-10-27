@@ -5,7 +5,7 @@ var redirectUri = 'http://localhost:3000/authorize';
 var scopes = [
   'openid',
   'offline_access',
-  'https://outlook.office.com/calendars.read'
+  'https://outlook.office.com/calendars.readwrite'
 ];
 
 var credentials = {
